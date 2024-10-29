@@ -1,11 +1,15 @@
 import { Button, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { ILoginRequest } from "../../use-case/interfaces";
+import { ILoginRequest } from "../../../use-case/interfaces";
 import { useMutation } from "react-query";
-import { AuthService } from "../../use-case/services/auth/login.service";
-import useAuthStore from "../../domain/auth/auth.store";
+import { AuthService } from "../../../use-case/services/auth/login.service";
+import useAuthStore from "../../../domain/auth/auth.store";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  // React Hooks
+  const navigate = useNavigate();
+
   // Store
   const setToken = useAuthStore((state) => state.setToken);
 
@@ -19,7 +23,10 @@ const Login = () => {
   const { mutate } = useMutation({
     mutationFn: AuthService.login,
     onError: console.log,
-    onSuccess: (r) => setToken(r.token),
+    onSuccess: (r) => {
+      setToken(r.token);
+      navigate("/dashboard/home");
+    },
   });
 
   const login = (data: ILoginRequest) => mutate(data);
