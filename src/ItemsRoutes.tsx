@@ -1,5 +1,5 @@
 import Clients from "./presentation/pages/Clients/Clients";
-import Examples from "./presentation/pages/Examples/Examples";
+import ServicesDB from "./presentation/pages/ServicesDB/ServicesDB";
 import Home from "./presentation/pages/Home/Home";
 
 interface IRoutesItems {
@@ -23,9 +23,9 @@ export const routesItems: IRoutesItems[] = [
     className: "bg-sky-500 py-3",
   },
   {
-    element: <Examples />,
-    path: "examples",
-    title: "Examples",
-    className: "bg-blue-500",
+    element: <ServicesDB />,
+    path: "services",
+    title: "Services DB",
+    className: "bg-green-500 p-3",
   },
 ];
